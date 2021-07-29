@@ -8,11 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @WebServlet("/employee")
-public class Servlet extends HttpServlet {
+public class EmployeeServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    public Servlet () {
+    public EmployeeServlet() {
         super();
     }
 
