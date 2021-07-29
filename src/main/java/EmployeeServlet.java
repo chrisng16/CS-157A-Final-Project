@@ -18,11 +18,12 @@ public class EmployeeServlet extends HttpServlet {
 
     /**
      * The doPost method is for receiving data from the front end to store in the db.
-     * @param request Request from the front ed
+     * @param request Request from the front end
      * @param response Response sent from the back end to the front-end.
      */
     @Override
-    protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost (HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
         // Get current session for sending responses to front-end
         HttpSession session = request.getSession();
@@ -45,6 +46,12 @@ public class EmployeeServlet extends HttpServlet {
         //TODO add inputs to database
     }
 
+
+    /**
+     * The doGet method is for sending data from the db to the front-end for displaying to the user.
+     * @param request Request from the front-end.
+     * @param response Response from the back-end.
+     */
     @Override
     protected void doGet (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
