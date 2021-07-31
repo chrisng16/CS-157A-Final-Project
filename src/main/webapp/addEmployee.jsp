@@ -35,6 +35,9 @@
     <label>Salary: </label>
     <input type="text" id="id3" name="salary" value=""> <br> <br>
 
+    <label>This employee is a manager </label>
+    <input type="checkbox" name="isManager" value="true">
+
     <div id="alert" style="color: blue"></div>
     <div id="alert2" style="color: blue"></div>
 
