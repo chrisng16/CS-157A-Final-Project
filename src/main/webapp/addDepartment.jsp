@@ -18,6 +18,8 @@
     <label>Department ID: </label>
     <input type="text" id="id2" value="" name="deptID"> <br>
 
+    <input type="submit" value="send">
+
 </form>
 <a href="index.jsp"><button>Return home</button></a>
 
