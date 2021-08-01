@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DAO {
-    private final String jdbcURL = "jdbc:oracle:thin:@localhost:1521:XE";
-    private final String jdbcUsername = "system";
-    private final String jdbcPassword = "oracle";
 
     public DAO() {}
 
@@ -53,11 +50,10 @@ public class DAO {
     public List <Employee> selectAllEmployees() {
         List <Employee> employees = new ArrayList < > ();
 
-        try (Connection connection = DBConnect.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("select * from employee")) {
-            System.out.println(preparedStatement);
+        try {
+            Connection connection = DBConnect.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee");
             ResultSet rs = preparedStatement.executeQuery();
-
             while (rs.next()) {
                 int employeeid = rs.getInt("employeeid");
                 String name = rs.getString("name");
@@ -65,14 +61,12 @@ public class DAO {
                 int salary = rs.getInt("salary");
                 employees.add(new Employee(employeeid, name, hours, salary));
             }
-
         } catch (SQLException e) {
             //printSQLException(e);
         }
 
         return employees;
     }
-
 }
 
 

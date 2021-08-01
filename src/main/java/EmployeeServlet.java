@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/employee")
 public class EmployeeServlet extends HttpServlet {
@@ -78,6 +79,8 @@ public class EmployeeServlet extends HttpServlet {
     protected void doGet (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String action = request.getServletPath();
+        
         // Get current session for sending responses to front-end
         HttpSession session = request.getSession();
 
@@ -97,15 +100,15 @@ public class EmployeeServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/searchEmployee.jsp");
         rd.forward(request,response);
 
+
     }
 
-    /*
-    private void doListEmployees(HttpServletRequest request, HttpServletResponse response)
+    protected void listEmployees(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        List<Employee> listEmployees = dao.selectAllUsers();
+        List<Employee> listEmployees = dao.selectAllEmployees();
         request.setAttribute("listEmployees", listEmployees);
         RequestDispatcher dispatcher = request.getRequestDispatcher("employeeList.jsp");
         dispatcher.forward(request, response);
     }
-    */
+
 }
