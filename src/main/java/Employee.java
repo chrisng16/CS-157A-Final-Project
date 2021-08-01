@@ -8,10 +8,10 @@ public class Employee{
 
     public Employee() {}
 
-    public Employee(int id, String name, int salary) {
+    public Employee(int id, String name, int hours, int salary) {
         employeeid = id;
         this.name = name;
-        //hoursworked = hours;
+        hoursworked = hours;
         this.salary = salary;
     }
 
@@ -23,13 +23,15 @@ public class Employee{
         return name;
     }
 
-    public int getHours() {
+    public int getHoursworked() {
         return hoursworked;
     }
 
     public int getSalary() {
         return salary;
     }
+
+    public int getProjectedpay() { return salary * hoursworked; }
 
     public void setName(String name) {
         this.name = name;
@@ -39,8 +41,17 @@ public class Employee{
         employeeid = id;
     }
 
+    public void setHoursworked(int hours) {
+        hoursworked = hours;
+    }
+
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public void setProjectedpay()
+    {
+        projectedpay = salary * hoursworked;
     }
 
 

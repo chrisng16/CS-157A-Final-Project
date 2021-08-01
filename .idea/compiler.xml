@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="CS-157A-Final-Project-dev" />
         <module name="project" />
+        <module name="CS157A_Final" />
       </profile>
     </annotationProcessing>
   </component>

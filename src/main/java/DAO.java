@@ -18,9 +18,9 @@ public class DAO {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO employee VALUES (?,?,?,?,?)");
             preparedStatement.setInt(1, employee.getId());
             preparedStatement.setString(2, employee.getName());
-            preparedStatement.setInt(3, 0);
+            preparedStatement.setInt(3, employee.getHoursworked());
             preparedStatement.setInt(4, employee.getSalary());
-            preparedStatement.setInt(5, 0);
+            preparedStatement.setInt(5, employee.getProjectedpay());
             preparedStatement.executeUpdate();
             System.out.println("Added to database.");
         } catch (SQLException e) {
@@ -33,15 +33,17 @@ public class DAO {
         Employee employee = new Employee();
         try {
             Connection connection = DBConnect.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT employeeid, name, salary FROM employee WHERE name = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee WHERE name = ?");
             preparedStatement.setString(1, n);
             ResultSet rs = preparedStatement.executeQuery();
             while(rs.next()) {
-                employee.setId(rs.getInt(1));
-                employee.setName(rs.getString(2));
-                employee.setSalary(rs.getInt(3));
+               employee.setName(rs.getString("name"));
+               employee.setId(rs.getInt("employeeid"));
+               employee.setHoursworked(rs.getInt("hoursworked"));
+               employee.setSalary(rs.getInt("salary"));
+               employee.setProjectedpay();
             }
-            //System.out.println(employee.getName() + " " + employee.getId());		//debug
+            //System.out.println(employee.getName() + " " + employee.getId() + " " + employee.getHoursworked());		//debug
         } catch (SQLException e) {
             //printSQLException(e);
         }
@@ -59,9 +61,9 @@ public class DAO {
             while (rs.next()) {
                 int employeeid = rs.getInt("employeeid");
                 String name = rs.getString("name");
-                //int hours = rs.getInt("hoursworked");
+                int hours = rs.getInt("hoursworked");
                 int salary = rs.getInt("salary");
-                employees.add(new Employee(employeeid, name, salary));
+                employees.add(new Employee(employeeid, name, hours, salary));
             }
 
         } catch (SQLException e) {

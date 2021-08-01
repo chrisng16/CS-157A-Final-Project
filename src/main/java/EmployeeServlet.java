@@ -37,18 +37,20 @@ public class EmployeeServlet extends HttpServlet {
 
         // Parameters received from the front end
         String name = request.getParameter("name");
-        String idS = request.getParameter("id");
+        String idS = request.getParameter("empID");
         String salaryS = request.getParameter("salary");
+        String hoursS = request.getParameter("hours");
         int id = Integer.parseInt(idS);
         int salary = Integer.parseInt(salaryS);
+        int hours = Integer.parseInt(hoursS);
 
         // Debugging stuff
-        String all = "\n" + name + " " +id + " " +salary;
+        String all = "\n" + name + " " +id + " " + hours + " " + salary;
         System.out.println(all);
 
         //TODO add inputs to database
 
-        Employee newEmp = new Employee(id, name, salary);
+        Employee newEmp = new Employee(id, name, hours, salary);
         try {
             dao.insertEmployee(newEmp);
             // Build and send a response to the front-end to verify that the item was received.
@@ -58,17 +60,12 @@ public class EmployeeServlet extends HttpServlet {
             rd.forward(request, response);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
-            String resp = "Unable to add " + name + " to the database.";
+            String error = e.getMessage();
+            String resp = "Unable to add " + name + " to the database. Error = " + error;
             session.setAttribute("response", resp);
             RequestDispatcher rd = request.getRequestDispatcher("/addEmployee.jsp");
             rd.forward(request, response);
         }
-
-        String resp = name + " was added to the database.";
-        session.setAttribute("response", resp);
-        RequestDispatcher rd = request.getRequestDispatcher("/addEmployee.jsp");
-        rd.forward(request, response);
 
     }
 
@@ -91,15 +88,9 @@ public class EmployeeServlet extends HttpServlet {
         //TODO get requested info from db to return to front-end
         Employee emp = dao.selectEmployee(req);
 
-        /*
-        // Hard-coded data to test sending data from back-end to front-end.
-        ArrayList<String> list = new ArrayList<>();
-        list.add("Tom");
-        list.add("Jane");
-        list.add("Harry");
-        */
-
-        String employeeInfo = emp.getName() + " " + emp.getId() + " " + emp.getSalary();
+        String employeeInfo = "<br>Employee Name : " + emp.getName() + " <br> Employee ID : " + emp.getId() + " <br> Hours Worked : "
+                + emp.getHoursworked() + "<br> Salary :  " + emp.getSalary() + "<br> Projected Pay : "
+                + emp.getProjectedpay();
 
         // Sends the data to the front-end
         session.setAttribute("list", employeeInfo);
