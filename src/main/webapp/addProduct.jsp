@@ -7,10 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head><!DOCTYPE html>
 
+<!DOCTYPE html>
+<head>
+
+</head>
 <html>
 <body>
 <form action="product" method="post">
@@ -20,7 +21,6 @@
     <input type="text" id="id2" value="" name="partNum"> <br>
     <label>Price: </label>
     <input type="text" id="id3" value="" name="price"> <br> <br>
-<%--    <input type="button" value="Submit" onclick="wawa()" />--%>
     <div id="alert" style="color: blue"></div>
     <div id="alert2" style="color: blue"></div>
     <input type="submit" value="Submit">
