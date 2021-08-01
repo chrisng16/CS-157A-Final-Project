@@ -1,6 +1,0 @@
-{
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "d:\\sqldeveloper-21.2.0.187.1842-x64\\sqldeveloper\\jdbc\\lib\\ojdbc14.jar"
-    ]
-}
