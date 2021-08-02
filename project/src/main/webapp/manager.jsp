@@ -5,7 +5,7 @@
 <div id="buttons" align="center">
     <a href="insert-edit-employee.jsp"><button>Add an Employee</button></a>
     <a href="<%=request.getContextPath()%>/list_employee"><button>List all Employee</button></a>
-    <a href="role.jsp"><button>Back</button></a>
+    <a href="index.jsp"><button>Back</button></a>
 </div>
 </body>
 </html>

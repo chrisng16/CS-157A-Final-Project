@@ -10,16 +10,16 @@ public class EmployeeDAO {
 
 	private dbConnect connect = new dbConnect();
 
-	private static final String INSERT_EMPLOYEE_SQL = "INSERT INTO EMPLOYEE VALUES (?,?,?)";
-	private static final String SELECT_EMPLOYEE_BY_ID_SQL = "SELECT ID, NAME, SALARY FROM EMPLOYEE WHERE ID = ?";
+	private static final String INSERT_EMPLOYEE_SQL = "INSERT INTO EMPLOYEE VALUES (?,?,?,?,?)";
+	private static final String SELECT_EMPLOYEE_BY_ID_SQL = "SELECT ID, NAME, HOURS_WORKED, SALARY, PROJECTED_INCOME FROM EMPLOYEE WHERE ID = ?";
 	private static final String SELECT_ALL_EMPLOYEES_SQL = "SELECT * FROM EMPLOYEE";
 	private static final String DELETE_EMPLOYEE_SQL = "DELETE FROM EMPLOYEE WHERE ID = ?";
-	private static final String UPDATE_EMPLOYEE_SQL = "UPDATE EMPLOYEE SET NAME = ?, SALARY = ? WHERE ID = ?";
+	private static final String UPDATE_EMPLOYEE_SQL = "UPDATE EMPLOYEE SET NAME = ?, HOURS_WORKED = ?, SALARY = ?, PROJECTED_INCOME = ? WHERE ID = ?";
 
 	public EmployeeDAO() {
 		Connection connection = connect.getConnection();
 		try {
-			String query = "CREATE TABLE EMPLOYEE (ID NUMBER(3) PRIMARY KEY, NAME VARCHAR2(50) NOT NULL, SALARY NUMBER(6) NOT NULL)";
+			String query = "CREATE TABLE EMPLOYEE (ID NUMBER(3) PRIMARY KEY, NAME VARCHAR2(50) NOT NULL, HOURS_WORKED NUMBER(3), SALARY NUMBER(6) NOT NULL, PROJECTED_INCOME NUMBER(10))";
 			Statement s = connection.createStatement();
 			s.execute(query);
 			System.out.println("TABLE CREATED!!!");
@@ -36,7 +36,9 @@ public class EmployeeDAO {
 
 			preparedStatement.setInt(1, employee.id);
 			preparedStatement.setString(2, employee.name);
-			preparedStatement.setDouble(3, employee.salary);
+			preparedStatement.setDouble(3, employee.hoursWorked);
+			preparedStatement.setDouble(4, employee.salary);
+			preparedStatement.setDouble(5, employee.projectedIncome);
 
 			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
@@ -56,7 +58,8 @@ public class EmployeeDAO {
 			while (resultSet.next()) {
 				String name = resultSet.getString("name");
 				double salary = resultSet.getDouble("salary");
-				employee = new Employee(id, name, salary);
+				double hoursWorked = resultSet.getDouble("hours_worked");
+				employee = new Employee(id, name, hoursWorked, salary);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,13 +74,14 @@ public class EmployeeDAO {
 				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_EMPLOYEES_SQL);) {
 
 			System.out.println(preparedStatement);
-			ResultSet rs = preparedStatement.executeQuery();
+			ResultSet resultSet = preparedStatement.executeQuery();
 
-			while (rs.next()) {
-				int id = rs.getInt("id");
-				String name = rs.getString("name");
-				double salary = rs.getDouble("salary");
-				employees.add(new Employee(id, name, salary));
+			while (resultSet.next()) {
+				int id = resultSet.getInt("id");
+				String name = resultSet.getString("name");
+				double salary = resultSet.getDouble("salary");
+				double hoursWorked = resultSet.getDouble("hours_worked");
+				employees.add(new Employee(id, name, hoursWorked, salary));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -105,7 +109,9 @@ public class EmployeeDAO {
 				PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_EMPLOYEE_SQL);) {
 			preparedStatement.setString(1, employee.getName());
 			preparedStatement.setDouble(2, employee.getSalary());
-			preparedStatement.setInt(3, employee.getId());
+			preparedStatement.setDouble(3, employee.getHourWorked());
+			preparedStatement.setDouble(4, employee.getProjectedIncome());
+			preparedStatement.setInt(5, employee.getId());
 			userUpdated = preparedStatement.executeUpdate() > 0;
 		}
 

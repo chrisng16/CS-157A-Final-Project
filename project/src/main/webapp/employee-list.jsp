@@ -10,68 +10,59 @@ table, tr, td, th {
 	border: 1px solid black;
 	border-collapse: collapse;
 }
+
 th, td {
-padding: 5px;
+	padding: 5px;
 }
+
 table.table {
 	margin-left: auto;
 	margin-right: auto;
 }
-
 </style>
 </head>
 
 <body>
+	<div class="container" align="center">
+		<h3 class="text-center">List of Employees</h3>
+		<a href="index.jsp"><button>Main Menu</button></a>
+		<hr>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Employee ID</th>
+					<th>Employee Name</th>
+					<th>Hours Work</th>
+					<th>Salary</th>
+					<th>Projected Income</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="employee" items="${employeeList}">
 
-	<header>
-		<nav>
-			<div>
-				<a href="index.jsp"> User Management App </a>
-			</div>
-
-			<ul class="navbar">
-				<li><a href="<%=request.getContextPath()%>/list_product">List of Products</a></li>
-			</ul>
-		</nav>
-	</header>
-	<br>
-
-	<div class="row">
-
-		<div class="container">
-			<h3 class="text-center">List of Users</h3>
-			<hr>
-			<div class="container text-left">
-
-				<a href="<%=request.getContextPath()%>/new_employee">Add New User</a>
-			</div>
-			<br>
-			<table class="table table-bordered">
-				<thead>
 					<tr>
-						<th>Employee ID</th>
-						<th>Employee Name</th>
-						<th>Salary</th>
-						<th>Actions</th>
+						<td><c:out value="${employee.id}" /></td>
+						<td><c:out value="${employee.name}" /></td>
+						<td><c:out value="${employee.hourWorked}" /></td>
+						<td><c:out value="${employee.salary}" /></td>
+						<td><c:out value="${employee.projectedIncome}" /></td>
+						<td><a
+							href="edit_employee?id=<c:out value='${employee.id}' />">Edit</a>
+							&nbsp;&nbsp;&nbsp;&nbsp; <a
+							href="delete_employee?id=<c:out value='${employee.id}' />">Delete</a></td>
 					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="employee" items="${employeeList}">
+				</c:forEach>
+				<!-- } -->
+			</tbody>
 
-						<tr>
-							<td><c:out value="${employee.id}" /></td>
-							<td><c:out value="${employee.name}" /></td>
-							<td><c:out value="${employee.salary}" /></td>
-							<td><a href="edit_employee?id=<c:out value='${employee.id}' />">Edit</a>
-								&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="delete_employee?id=<c:out value='${employee.id}' />">Delete</a></td>
-						</tr>
-					</c:forEach>
-					<!-- } -->
-				</tbody>
-
-			</table>
-		</div>
+		</table>
+	</div>
+	<br>
+	<div class="container" align="center">
+		<a href="<%=request.getContextPath()%>/new_employee"><button>Add New User</button></a>
+		<a href="manager.jsp"><button>Back to Manager</button></a>
+		<a href="admin.jsp"><button>Back to Admin</button></a>
 	</div>
 </body>
 

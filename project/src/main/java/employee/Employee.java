@@ -4,17 +4,18 @@ public class Employee {
 
 	protected final int id;
 	protected String name;
-	protected double hourWorked;
+	protected double hoursWorked;
 	protected double salary;
 	protected double projectedIncome;
-
-	public Employee(int id, String name, double salary) {
+	
+	public Employee(int id, String name, double salary, double hoursWorked) {
 		this.id = id;
 		this.name = name;
 		this.salary = salary;
-		this.hourWorked = 0;
+		this.hoursWorked = hoursWorked;
+		this.projectedIncome = salary * hoursWorked;
 	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -28,11 +29,11 @@ public class Employee {
 	}
 
 	public double getHourWorked() {
-		return hourWorked;
+		return hoursWorked;
 	}
 
-	public void setHourWorked(int hourWorked) {
-		this.hourWorked = hourWorked;
+	public void setHourWorked(double hourWorked) {
+		this.hoursWorked = hourWorked;
 	}
 
 	public double getSalary() {
@@ -44,7 +45,7 @@ public class Employee {
 	}
 
 	public double getProjectedIncome() {
-		return salary * hourWorked;
+		return projectedIncome;
 	}
 
 	@Override

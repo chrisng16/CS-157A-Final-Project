@@ -33,12 +33,17 @@
 
 		<fieldset class="form-group">
 			<label>ID</label>
-			<input type="text" value="<c:out value='${employee.id}'/>" name="id">
+			<input type="text" value="<c:out value='${employee.id}'/>" name="id" required="required">
+		</fieldset>
+		
+		<fieldset class="form-group">
+			<label>Hours Worked</label>
+			<input type="text" value="<c:out value='${employee.hourWorked}'/>" name="hoursWorked">
 		</fieldset>
 
 		<fieldset class="form-group">
 			<label>Salary</label>
-			<input type="text" value="<c:out value='${employee.salary}'/>" name="salary">
+			<input type="text" value="<c:out value='${employee.salary}'/>" name="salary" required="required">
 		</fieldset>
 		
 		<input type='submit' value="Submit">

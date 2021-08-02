@@ -53,6 +53,12 @@ public class ProjectServlet extends HttpServlet {
 			case "/update_employee":
 				updateEmployee(request, response);
 				break;
+			case "/search_employee":
+				searchEmployee(request, response);
+				break;
+			case "/search_product":
+				searchProduct(request, response);
+				break;
 			case "/insert_product":
 				insertProduct(request, response);
 				break;
@@ -85,6 +91,22 @@ public class ProjectServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	private void searchProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		Product temp = productDAO.selectProduct(id);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("show-searched-product.jsp");
+		request.setAttribute("searched_product", temp);
+		dispatcher.forward(request, response);
+	}
+
+	private void searchEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		Employee temp = employeeDAO.selectEmployee(id);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("show-searched-employee.jsp");
+		request.setAttribute("searched_employee", temp);
+		dispatcher.forward(request, response);
+	}
+
 	private void showEditProductForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -170,11 +192,21 @@ public class ProjectServlet extends HttpServlet {
 
 	private void updateEmployee(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		String name = request.getParameter("name");
-		double salary = Double.parseDouble(request.getParameter("salary"));
+		String name = "";
+		int id = 0;
+		double salary = 0;
+		double hoursWorked = 0;
 
-		Employee temp = new Employee(id, name, salary);
+		try {
+			name = request.getParameter("name");
+			id = Integer.parseInt(request.getParameter("id"));
+			salary = Double.parseDouble(request.getParameter("salary"));
+			hoursWorked = Double.valueOf(request.getParameter("hoursWorked"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Employee temp = new Employee(id, name, salary, hoursWorked);
 		employeeDAO.updateEmployee(temp);
 		response.sendRedirect("list_employee");
 	}
@@ -197,16 +229,18 @@ public class ProjectServlet extends HttpServlet {
 		String name = "";
 		int id = 0;
 		double salary = 0;
+		double hoursWorked = 0;
 
 		try {
 			name = request.getParameter("name");
-			id = Integer.valueOf(request.getParameter("id"));
-			salary = Double.valueOf(request.getParameter("salary"));
+			id = Integer.parseInt(request.getParameter("id"));
+			salary = Double.parseDouble(request.getParameter("salary"));
+			hoursWorked = Double.valueOf(request.getParameter("hoursWorked"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		Employee newEmployee = new Employee(id, name, salary);
+		
+		Employee newEmployee = new Employee(id, name, salary, hoursWorked);
 		employeeDAO.insertEmployee(newEmployee);
 		response.sendRedirect("list_employee");
 	}

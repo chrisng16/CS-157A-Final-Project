@@ -1,8 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
-
 <head>
 <title>User Management Application</title>
 <style>
@@ -21,11 +18,9 @@ table.table {
 }
 </style>
 </head>
-
 <body>
 	<div class="container" align="center">
-		<h3 class="text-center">List of Products</h3>
-		<a href="index.jsp"><button>Main Menu</button></a>
+		<h3 class="text-center">Product</h3>
 		<hr>
 		<table class="table table-bordered">
 			<thead>
@@ -36,25 +31,18 @@ table.table {
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="product" items="${productList}">
-
-					<tr>
-						<td><c:out value="${product.id}" /></td>
-						<td><c:out value="${product.name}" /></td>
-						<td><c:out value="${product.price}" /></td>
-					</tr>
-				</c:forEach>
-				<!-- } -->
+				<tr>
+					<td><c:out value="${searched_product.id}" /></td>
+					<td><c:out value="${searched_product.name}" /></td>
+					<td><c:out value="${searched_product.price}" /></td>
+				</tr>
 			</tbody>
 
 		</table>
-		<br>
-		<div>
-			<a href="customer.jsp">
-				<button>Back</button>
-			</a>
-		</div>
+	</div>
+	<br>
+	<div class="container" align="center">
+		<a href="index.jsp"><button>Back</button></a>
 	</div>
 </body>
-
 </html>

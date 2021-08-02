@@ -1,13 +1,12 @@
-  
 <html>
 <body>
-<h3 align="center">Select an Option: </h3>
+<h3 align="center">I am: </h3>
 
-<div id="buttons" align="center">
-    <a href="new-user-form.jsp"><button>Add an Employee</button></a>
-    <a href="addProduct.jsp"><button>Add a Product</button></a>
-    <a href="searchEmployee.jsp"><button>Search for employees</button></a>
-    <a href="<%=request.getContextPath()%>/list"><button>List all Employee</button></a>
+<div id="roles" align="center">
+    <a href="customer.jsp"><button>Customer</button></a>
+    <a href="employee.jsp"><button>Employee</button></a>
+    <a href="manager.jsp"><button>Manager</button></a>
+    <a href="admin.jsp"><button>Admin</button></a>
 </div>
 </body>
 </html>

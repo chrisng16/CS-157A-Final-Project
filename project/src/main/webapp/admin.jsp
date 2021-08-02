@@ -1,4 +1,3 @@
-  
 <html>
 <body>
 <h3 align="center">Select an Option: </h3>
@@ -8,8 +7,8 @@
     <a href="insert-edit-product.jsp"><button>Add a Product</button></a>
     <a href="searchEmployee.jsp"><button>Search for employees</button></a>
     <a href="<%=request.getContextPath()%>/list_employee"><button>List all Employees</button></a>
-    <a href="<%=request.getContextPath()%>/list_product"><button>List all Products</button></a>
-    <a href="role.jsp"><button>Back</button></a>
+    <a href="<%=request.getContextPath()%>/list_product_admin"><button>List all Products</button></a>
+    <a href="index.jsp"><button>Back</button></a>
 </div>
 </body>
 </html>

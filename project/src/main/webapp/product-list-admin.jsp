@@ -23,29 +23,12 @@ table.table {
 
 <body>
 
-	<header>
-		<nav>
-			<div>
-				<a href="index.jsp"> Main Menu </a>
-			</div>
-
-			<ul class="navbar">
-				<li><a href="<%=request.getContextPath()%>/list_employee">List of Employees</a></li>
-			</ul>
-		</nav>
-	</header>
-	<br>
-
 	<div class="row">
 
-		<div class="container">
+		<div class="container" align="center">
 			<h3 class="text-center">List of Products</h3>
+			<a href="index.jsp"><button>Main Menu</button></a>
 			<hr>
-			<div class="container text-left">
-
-				<a href="<%=request.getContextPath()%>/new_product">Add New Product</a>
-			</div>
-			<br>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -67,10 +50,14 @@ table.table {
 								<a href="delete_product?id=<c:out value='${product.id}' />">Delete</a></td>
 						</tr>
 					</c:forEach>
-					<!-- } -->
 				</tbody>
 
 			</table>
+			<br>
+			<div class="container text-left" align="center">
+				<a href="<%=request.getContextPath()%>/new_product"><button>Add New Product</button></a>
+				<a href="admin.jsp"><button>Back</button></a>
+			</div>
 		</div>
 	</div>
 </body>
