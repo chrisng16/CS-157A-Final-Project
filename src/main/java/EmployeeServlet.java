@@ -1,3 +1,5 @@
+import project.Employee;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -66,10 +68,17 @@ public class EmployeeServlet extends HttpServlet {
         //TODO get requested info from db to return to front-end
 
         // Hard-coded data to test sending data from back-end to front-end.
-        ArrayList<String> list = new ArrayList<>();
-        list.add("Tom");
-        list.add("Jane");
-        list.add("Harry");
+//        ArrayList<String> list = new ArrayList<>();
+//        list.add("Tom");
+//        list.add("Jane");
+//        list.add("Harry");
+        ArrayList<Employee> list = new ArrayList<>();
+        Employee tom = new Employee(1, "tom", 24.99);
+        Employee jane = new Employee(2, "jane", 25.99);
+        Employee harry = new Employee(3, "harry", 26.99);
+        list.add(tom);
+        list.add(jane);
+        list.add(harry);
 
         // Sends the data to the front-end
         session.setAttribute("list", list);
