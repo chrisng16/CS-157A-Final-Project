@@ -26,11 +26,11 @@ table.table {
 	<header>
 		<nav>
 			<div>
-				<a href="index.jsp"> User Management App </a>
+				<a href="index.jsp"> Main Menu </a>
 			</div>
 
 			<ul class="navbar">
-				<li><a href="<%=request.getContextPath()%>/list_product">List of Products</a></li>
+				<li><a href="<%=request.getContextPath()%>/list_employee">List of Employees</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -39,32 +39,32 @@ table.table {
 	<div class="row">
 
 		<div class="container">
-			<h3 class="text-center">List of Users</h3>
+			<h3 class="text-center">List of Products</h3>
 			<hr>
 			<div class="container text-left">
 
-				<a href="<%=request.getContextPath()%>/new_employee">Add New User</a>
+				<a href="<%=request.getContextPath()%>/new_product">Add New Product</a>
 			</div>
 			<br>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th>Employee ID</th>
-						<th>Employee Name</th>
-						<th>Salary</th>
+						<th>Product ID</th>
+						<th>Product Name</th>
+						<th>Price</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="employee" items="${employeeList}">
+					<c:forEach var="product" items="${productList}">
 
 						<tr>
-							<td><c:out value="${employee.id}" /></td>
-							<td><c:out value="${employee.name}" /></td>
-							<td><c:out value="${employee.salary}" /></td>
-							<td><a href="edit_employee?id=<c:out value='${employee.id}' />">Edit</a>
+							<td><c:out value="${product.id}" /></td>
+							<td><c:out value="${product.name}" /></td>
+							<td><c:out value="${product.price}" /></td>
+							<td><a href="edit_product?id=<c:out value='${product.id}' />">Edit</a>
 								&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="delete_employee?id=<c:out value='${employee.id}' />">Delete</a></td>
+								<a href="delete_product?id=<c:out value='${product.id}' />">Delete</a></td>
 						</tr>
 					</c:forEach>
 					<!-- } -->
