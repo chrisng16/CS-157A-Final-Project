@@ -5,11 +5,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Employee Managing System</title>
+<title>Add Employee</title>
+
+<style>
+label {
+  display: inline-block;
+  width: 100px;
+  text-align: left;
+}​
+</style>
 </head>
 
 <body>
-	<div>
+	<div align="center">
 		<c:if test="${employee != null}">
 			<form action="update_employee" method="post">
 		</c:if>
@@ -45,12 +53,15 @@
 			<label>Salary</label>
 			<input type="text" value="<c:out value='${employee.salary}'/>" name="salary" required="required">
 		</fieldset>
-		
-		<input type='submit' value="Submit">
+		<fieldset>
+			<input type='submit' value="Submit">
+		</fieldset>
 		</form>
 	</div>
 	<br>
-	<a href="manager.jsp"><button>Back to Main</button></a>
+	<div align = "center">
+		<a href="manager.jsp"><button>Back to Manager</button></a>
+	</div>
 </body>
 
 </html>

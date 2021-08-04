@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>User Management Application</title>
+<title>Employee Report</title>
 <style>
 table, tr, td, th {
 	border: 1px solid black;
@@ -20,7 +20,7 @@ table.table {
 </head>
 <body>
 	<div class="container" align="center">
-		<h3 class="text-center">Employee</h3>
+		<h3 class="text-center">Employee Report</h3>
 		<hr>
 		<table class="table table-bordered">
 			<thead>
@@ -46,7 +46,7 @@ table.table {
 	</div>
 	<br>
 	<div class="container" align="center">
-		<a href="index.jsp"><button>Back</button></a>
+		<a href="employee.jsp"><button>Back</button></a>
 	</div>
 </body>
 </html>

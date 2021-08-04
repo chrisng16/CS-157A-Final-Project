@@ -25,7 +25,7 @@ public class ProjectServlet extends HttpServlet {
 	public void init() {
 		employeeDAO = new EmployeeDAO();
 		productDAO = new ProductDAO();
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -91,15 +91,35 @@ public class ProjectServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	private void searchProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		Product temp = productDAO.selectProduct(id);
+
+	private void searchProduct(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		String idString = request.getParameter("id");
+		System.out.println(idString);
+		int id = 0;
+		Product tempID = null;
+		Product tempName = null;
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("show-searched-product.jsp");
-		request.setAttribute("searched_product", temp);
+
+		if (idString != null) {
+			System.out.print("Searching with id...\n");
+			id = Integer.parseInt(request.getParameter("id"));
+			tempID = productDAO.selectProduct(id);
+			request.setAttribute("searched_product", tempID);
+		} else {
+			System.out.print("Searching with name...\n");
+			String name = request.getParameter("name").toLowerCase();
+			tempName = productDAO.selectProduct(name);
+			request.setAttribute("searched_product", tempName);
+		}
+			
 		dispatcher.forward(request, response);
 	}
 
-	private void searchEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void searchEmployee(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		Employee temp = employeeDAO.selectEmployee(id);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("show-searched-employee.jsp");
@@ -147,7 +167,7 @@ public class ProjectServlet extends HttpServlet {
 		double price = 0;
 
 		try {
-			name = request.getParameter("name");
+			name = request.getParameter("name").toLowerCase();
 			id = Integer.valueOf(request.getParameter("id"));
 			price = Double.valueOf(request.getParameter("price"));
 		} catch (Exception e) {
@@ -169,7 +189,7 @@ public class ProjectServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("product-list-admin.jsp");
 		dispatcher.forward(request, response);
 	}
-	
+
 	private void listProductsCustomer(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 		List<Product> productList = productDAO.selectAllProducts();
@@ -205,8 +225,8 @@ public class ProjectServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		Employee temp = new Employee(id, name, salary, hoursWorked);
+
+		Employee temp = new Employee(id, name, hoursWorked, salary);
 		employeeDAO.updateEmployee(temp);
 		response.sendRedirect("list_employee");
 	}
@@ -239,8 +259,8 @@ public class ProjectServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		Employee newEmployee = new Employee(id, name, salary, hoursWorked);
+
+		Employee newEmployee = new Employee(id, name, hoursWorked, salary);
 		employeeDAO.insertEmployee(newEmployee);
 		response.sendRedirect("list_employee");
 	}

@@ -42,7 +42,7 @@ table.table {
 	</div>
 	<br>
 	<div class="container" align="center">
-		<a href="index.jsp"><button>Back</button></a>
+		<a href="search-product.jsp"><button>Back</button></a>
 	</div>
 </body>
 </html>

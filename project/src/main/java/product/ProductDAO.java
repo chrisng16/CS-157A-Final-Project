@@ -15,6 +15,7 @@ public class ProductDAO {
 	
 	private static final String INSERT_PRODUCT_SQL = "INSERT INTO PRODUCT VALUES (?,?,?)";
 	private static final String SELECT_PRODUCT_BY_ID_SQL = "SELECT ID, NAME, PRICE FROM PRODUCT WHERE ID = ?";
+	private static final String SELECT_PRODUCT_BY_NAME_SQL = "SELECT ID, NAME, PRICE FROM PRODUCT WHERE NAME = ?";
 	private static final String SELECT_ALL_PRODUCTS_SQL = "SELECT * FROM PRODUCT";
 	private static final String DELETE_PRODUCT_SQL = "DELETE FROM PRODUCT WHERE ID = ?";
 	private static final String UPDATE_PRODUCT_SQL = "UPDATE PRODUCT SET NAME = ?, PRICE = ? WHERE ID = ?";
@@ -56,6 +57,26 @@ public class ProductDAO {
 
 			while (resultSet.next()) {
 				String name = resultSet.getString("name");
+				double price = resultSet.getDouble("price");
+				product = new Product(id, name, price);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return product;
+	}
+	
+	public Product selectProduct(String name) {
+		Product product = null;
+
+		try (Connection connection = connect.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_BY_NAME_SQL);) {
+			preparedStatement.setString(1, name);
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				int id = resultSet.getInt("id");
 				double price = resultSet.getDouble("price");
 				product = new Product(id, name, price);
 			}

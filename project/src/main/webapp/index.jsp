@@ -1,4 +1,8 @@
 <html>
+
+<head>
+<title>Main Menu</title>
+</head>
 <body>
 <h3 align="center">I am: </h3>
 

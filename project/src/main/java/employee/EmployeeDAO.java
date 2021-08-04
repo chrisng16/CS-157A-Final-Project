@@ -108,8 +108,8 @@ public class EmployeeDAO {
 		try (Connection connection = connect.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_EMPLOYEE_SQL);) {
 			preparedStatement.setString(1, employee.getName());
-			preparedStatement.setDouble(2, employee.getSalary());
-			preparedStatement.setDouble(3, employee.getHourWorked());
+			preparedStatement.setDouble(2, employee.getHourWorked());
+			preparedStatement.setDouble(3, employee.getSalary());
 			preparedStatement.setDouble(4, employee.getProjectedIncome());
 			preparedStatement.setInt(5, employee.getId());
 			userUpdated = preparedStatement.executeUpdate() > 0;

@@ -8,7 +8,7 @@ public class Employee {
 	protected double salary;
 	protected double projectedIncome;
 	
-	public Employee(int id, String name, double salary, double hoursWorked) {
+	public Employee(int id, String name, double hoursWorked, double salary) {
 		this.id = id;
 		this.name = name;
 		this.salary = salary;

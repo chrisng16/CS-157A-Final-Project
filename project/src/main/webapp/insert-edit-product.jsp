@@ -5,11 +5,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Product Managing System</title>
+<title>Add Product</title>
+<style>
+label {
+	display: inline-block;
+	width: 80px;
+	text-align: left;
+}
+​
+</style>
 </head>
 
 <body>
-	<div>
+	<div align="center">
 		<c:if test="${product != null}">
 			<form action="update_product" method="post">
 		</c:if>
@@ -23,29 +31,35 @@
 		</h2>
 
 		<c:if test="${product != null}">
-			<input type="hidden" name="id" value="<c:out value='${product.id}' />" />
+			<input type="hidden" name="id"
+				value="<c:out value='${product.id}' />" />
 		</c:if>
 
-		<fieldset class="form-group">
-			<label>Name</label>
-			<input type="text" value="<c:out value='${product.name}'/>" name="name" required="required">
+		<fieldset>
+			<label>ID</label> <input type="text"
+				value="<c:out value='${product.id}'/>" name="id">
 		</fieldset>
 
-		<fieldset class="form-group">
-			<label>ID</label>
-			<input type="text" value="<c:out value='${product.id}'/>" name="id">
+		<fieldset>
+			<label>Name</label> <input type="text"
+				value="<c:out value='${product.name}'/>" name="name"
+				required="required">
 		</fieldset>
 
-		<fieldset class="form-group">
-			<label>Price</label>
-			<input type="text" value="<c:out value='${product.price}'/>" name="price">
+		<fieldset>
+			<label>Price</label> <input type="text"
+				value="<c:out value='${product.price}'/>" name="price">
 		</fieldset>
-		
-		<input type='submit' value="Submit">
+		<fieldset>
+			<input type='submit' value="Submit">
+		</fieldset>
 		</form>
 	</div>
 	<br>
-	<a href="index.jsp"><button>Back to Main</button></a>
+	<div align="center">
+		<a href="index.jsp"><button>Back to Main</button></a>
+	</div>
+
 </body>
 
 </html>
